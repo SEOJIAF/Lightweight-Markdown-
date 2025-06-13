@@ -28,12 +28,4 @@
 
   <script>
 
-    function updateContent() {
-      var content = document.getElementById('content').value;
-      var rendered = marked.parse(content); // No code block wrapper
-      document.getElementById("rendered").innerHTML = rendered;
-    }
-
-    document.getElementById('content').addEventListener('input', updateContent);
-    
   </script>
