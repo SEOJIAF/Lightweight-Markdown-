@@ -1,0 +1,16 @@
+#container{
+    display: flex;
+    width: 100%;
+    height: 100vh
+}
+#place{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+#rendered{
+    color: var(--text);
+    width: 50%;
+    height: 100%;
+    white-space: pre-wrap;
+}
