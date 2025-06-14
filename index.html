@@ -30,10 +30,14 @@
   <script>
     var User_input = ""
 function update () {
-    document.getElementById("content").value = User_input
+    User_input = document.getElementById("content").value
     console.log(User_input)
-    var array_from_input = User_input.array_from_input
-    console.log(array_from_input)
+    // Example: split input into array by lines
+    stringToArray(User_input)
 }
+function stringToArray(str) {
+  var main_string = str.split('\n');
+  console.log(main_string)
 
+}
   </script>
