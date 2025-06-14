@@ -29,27 +29,38 @@
 
   <script>
   var User_input = "";
-
+  var lines = [];
 
   function update () {
-      User_input = document.getElementById("content").value;
-      console.log(User_input);
-      // Example: split input into array by lines
-      stringToArray(User_input);
+    User_input = document.getElementById("content").value;
+    console.log(User_input);
+    stringToArray(User_input);
   }
 
-
   function stringToArray(str) {
-    var lines = [];
+    lines = [];
     var main_string = str.split('\n');
     console.log(main_string);
 
     for (var i = 0; i < main_string.length; i++) {
-      var line = main_string[i].split("") ;
-      lines.push(line);
+    var line = main_string[i].split("") ;
+    lines.push(line);
     }
     console.log(lines);
+
+    debil(); // Call debil after processing the array
   }
 
+  // interpreter goes here: (hopefully)
 
+  function debil() {
+    for (var i = 0; i < lines.length; i++) {
+    if(lines[i][0] === "#" ){
+      console.log("yuh")
+    }
+    else{
+      console.log("pluh")
+    }
+    }
+  }
   </script>
