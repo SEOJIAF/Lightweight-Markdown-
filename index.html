@@ -30,6 +30,7 @@
   <script>
   var User_input = "";
   var lines = [];
+  const target = document.getElementById(rendered)
 
 
 //                     _           
@@ -75,7 +76,11 @@
   function debil() {
     for (var i = 0; i < lines.length; i++) {
       if(lines[i][0] === "#" ){
-        
+        var line = lines[i].join("")
+
+        const newElement = document.createElement('h1');
+        newElement.textContent = line;
+        target.append(newElement)
       }
       else{
         console.log("pluh")
