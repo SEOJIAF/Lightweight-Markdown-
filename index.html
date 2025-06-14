@@ -28,16 +28,27 @@
 
 
   <script>
-    var User_input = ""
-function update () {
-    User_input = document.getElementById("content").value
-    console.log(User_input)
-    // Example: split input into array by lines
-    stringToArray(User_input)
-}
-function stringToArray(str) {
-  var main_string = str.split('\n');
-  console.log(main_string)
+  var lines = []
+  var User_input = ""
 
-}
+
+  function update () {
+      User_input = document.getElementById("content").value
+      console.log(User_input)
+      // Example: split input into array by lines
+      stringToArray(User_input)
+  }
+
+
+  function stringToArray(str) {
+    var main_string = str.split('\n');
+    console.log(main_string)
+
+    for (var i = 0; i < main_string.length; i++) {
+      var line = main_string[i].split("") 
+      lines.push(line)
+    }
+    console.log(lines)
+  }
+
   </script>
