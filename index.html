@@ -74,8 +74,11 @@
 
   function debil() {
     for (var i = 0; i < lines.length; i++) {
-      if(lines[i][0] === "#" ){
-        var line = lines[i].join("")
+      if(lines[i][0] === "#" && lines[i][1] === " " ){
+        var line_array = lines[i];
+        line_array.splice(0,2);
+        var line = line_array.join("")
+        
 
         const newElement = document.createElement('h1');
         newElement.textContent = line;
