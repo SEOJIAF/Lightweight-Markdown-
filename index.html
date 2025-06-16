@@ -20,7 +20,7 @@
 
   </div>  
 
-
+h
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
@@ -30,7 +30,6 @@
   <script>
   var User_input = "";
   var lines = [];
-  var number_of_hashtags = 0
   const target = document.getElementById("rendered")
 
 
@@ -73,40 +72,37 @@
 //                        | |                          
 //                        |_|                           
 
-  function debil() {
-    target.innerHTML = ""
 
-    for (var i = 0; i < lines.length; i++) {
-      if(lines[i][0] === "#"){
-        number_of_hashtags++
+function debil(){
+  target.innerHTML = ""
+
+  for (var i = 0; i < lines.length; i++) {
+    var number_of_hashtags = 0
+    var line_array = lines[i];
+
+    var hashtag = true
+    while (hashtag === true) {
+      if(line_array[0] === "#"){
+        number_of_hashtags++;
+        line_array.shift();
       }
       else{
-        break
+        hashtag = false;
       }
     }
+
+    var line = line_array.join("")
     
+    var hTag = "h" + number_of_hashtags
 
-    for (var i = 0; i < lines.length; i++) {
-      if(number_of_hashtags > 0){
-        var line_array = lines[i];
-        line_array.splice(0, number_of_hashtags + 1);
-            var line = line_array.join("")
-            
-
-            var h_something = "h" + number_of_hashtags
-            
-            const newElement = document.createElement(h_something);
-            newElement.textContent = line;
-            target.append(newElement)
-      }
-      else{
-        var line = lines[i].join("")
-
-        const newElement = document.createElement('p');
-        newElement.textContent = line;
-        target.append(newElement)
-      }
-    }
+    const newElement = document.createElement(hTag);
+    newElement.textContent = line;
+    target.append(newElement)
   
   }
+
+
+
+  }
+  
   </script>
