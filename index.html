@@ -118,33 +118,36 @@ function reader(){
 
   const last_letter = line_array.length - 1;
 
-function wrapers(wrapper, tag){
-    if (line_array[0] === wrapper && line_array[last_letter] === wrapper) {
-    const line = line_array.join("");
-    const trimmed = line.slice(1, -1);
+  function wrapers(wrapper, tag){
+      if (line_array[0] === wrapper && line_array[last_letter] === wrapper) {
+      const line = line_array.join("");
+      const trimmed = line.slice(1, -1);
 
-    const bold = document.createElement(tag);
-    bold.textContent = trimmed;
+      const bold = document.createElement(tag);
+      bold.textContent = trimmed;
 
-    const paragraph = document.createElement("p");
-    paragraph.appendChild(bold);
-    target.appendChild(paragraph);
+      const paragraph = document.createElement("p");
+      paragraph.appendChild(bold);
+      target.appendChild(paragraph);
 
-    line_array.splice(0, line_array.length);
-    return true;
+      line_array.splice(0, line_array.length);
+      return true;
+    }
+    return false;
   }
-  return false;
-}
-if(
-  wrapers("*","b")||
-  wrapers("^","i")||
-  wrapers("~","s")
-){
-  continue;
-}
+  if(
+    wrapers("*","b")||
+    wrapers("^","i")||
+    wrapers("~","s")
+  ){
+    continue;
+  }
 
-
-
+  if(line_array[0] === "n" && line_array[last_letter + 1] === "/"){
+    const newElement = document.createElement("h1");
+    newElement.textContent = line;
+    target.append(newElement)
+  }
 
         
   if(number_of_hashtags > 0){
