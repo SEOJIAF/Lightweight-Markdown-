@@ -15,3 +15,17 @@
     height: 100%;
     white-space: pre-wrap;
 }
+b{
+    margin: 16px, 0px, 16px, 0px;
+}
+
+p:empty {
+  min-height: 19px;  /* or any height */
+  /* or padding */
+  overflow: hidden;
+  margin: 0px
+}
+
+p#important{
+    margin: 0px, 0px, 0px, 0px;
+}

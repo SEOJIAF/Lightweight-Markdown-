@@ -11,7 +11,28 @@
   <div id="container">
 
     <div id="place">
-      <textarea name="input" id="content" cols="80" rows="80"></textarea>
+      <textarea name="input" id="content" cols="80" rows="60"># h1 Heading 
+## h2 Heading
+### h3 Heading
+#### h4 Heading
+##### h5 Heading
+###### h6 Heading
+
+
+##Horizontal Rules
+
+---
+
+
+
+##Emphasis
+
+*This is bold text*
+^This is italic text^
+~Strikethrough~
+
+##empty lines 
+n/</textarea>
       <button onclick="update()">Goooo</button>
     </div>
 
@@ -76,6 +97,7 @@ h
 
 
 function reader(){
+
   target.innerHTML = ""
 
   for (var i = 0; i < lines.length; i++) {
@@ -127,6 +149,7 @@ function reader(){
       bold.textContent = trimmed;
 
       const paragraph = document.createElement("p");
+      paragraph.id = "important";
       paragraph.appendChild(bold);
       target.appendChild(paragraph);
 
@@ -143,10 +166,13 @@ function reader(){
     continue;
   }
 
-  if(line_array[0] === "n" && line_array[last_letter + 1] === "/"){
-    const newElement = document.createElement("h1");
-    newElement.textContent = line;
+  if(line_array[0] === "n" && line_array[last_letter] === "/"){
+    console.log("works")
+    const newElement = document.createElement("p");
+    // newElement.textContent = "&nbsp;"
+    newElement.id = "important";
     target.append(newElement)
+    line_array.splice(0, line_array.length);
   }
 
         
@@ -170,12 +196,15 @@ function reader(){
 
     
   }
-  const paragraphs = target.querySelectorAll('p');
-  paragraphs.forEach(p => {
-    if (p.textContent.trim() === '') {
-      p.remove();
-    }
-  });
+  
+const paragraphs = target.querySelectorAll('p');
+
+paragraphs.forEach(p => {
+  if (p.id !== "important" && p.textContent.trim() === '') {
+    p.remove();
+  }
+});
+
 
 }
   
