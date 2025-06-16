@@ -118,12 +118,12 @@ function reader(){
 
   const last_letter = line_array.length - 1;
 
-    // make bold text
-  if (line_array[0] === "*" && line_array[last_letter] === "*") {
+function wrapers(wrapper, tag){
+    if (line_array[0] === wrapper && line_array[last_letter] === wrapper) {
     const line = line_array.join("");
     const trimmed = line.slice(1, -1);
 
-    const bold = document.createElement("b");
+    const bold = document.createElement(tag);
     bold.textContent = trimmed;
 
     const paragraph = document.createElement("p");
@@ -131,38 +131,17 @@ function reader(){
     target.appendChild(paragraph);
 
     line_array.splice(0, line_array.length);
+    return true;
   }
-    
-    //italic text
-  if (line_array[0] === "^" && line_array[last_letter] === "^") {
-    const line = line_array.join("");
-    const trimmed = line.slice(1, -1);
-
-    const italic = document.createElement("i");
-    italic.textContent = trimmed;
-
-    const paragraph = document.createElement("p");
-    paragraph.appendChild(italic);
-    target.appendChild(paragraph);
-
-    line_array.splice(0, line_array.length);
-  }
-
-    //strike-throug text
-  if (line_array[0] === "~" && line_array[last_letter] === "~") {
-    const line = line_array.join("");
-    const trimmed = line.slice(1, -1);
-
-    const strike = document.createElement("s");
-    strike.textContent = trimmed;
-
-    const paragraph = document.createElement("p");
-    paragraph.appendChild(strike);
-    target.appendChild(paragraph);
-
-    line_array.splice(0, line_array.length);
-  }
-
+  return false;
+}
+if(
+  wrapers("*","b")||
+  wrapers("^","i")||
+  wrapers("~","s")
+){
+  continue;
+}
 
 
 
