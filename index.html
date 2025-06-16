@@ -30,6 +30,7 @@
   <script>
   var User_input = "";
   var lines = [];
+  var number_of_hashtags = 0
   const target = document.getElementById("rendered")
 
 
@@ -74,24 +75,38 @@
 
   function debil() {
     target.innerHTML = ""
+    number_of_hashtags = 0;
+    var idx = 0;
     for (var i = 0; i < lines.length; i++) {
-      if(lines[i][0] === "#" && lines[i][1] === " " ){
-        var line_array = lines[i];
-        line_array.splice(0,2);
-        var line = line_array.join("")
-        
-
-        const newElement = document.createElement('h1');
-        newElement.textContent = line;
-        target.append(newElement)
+      if(lines[i][0] === "#"){
+        number_of_hashtags++
       }
       else{
-        var line = lines[i].join("")
-
-        const newElement = document.createElement('p');
-        newElement.textContent = line;
-        target.append(newElement)
+        idx = i;
+        break
       }
     }
+    
+    if(number_of_hashtags > 0){
+      var line_array = lines[idx];
+      line_array.splice(0, number_of_hashtags + 1);
+          var line = line_array.join("")
+          
+
+          var h_something = "h" + number_of_hashtags
+          
+          const newElement = document.createElement(h_something);
+          newElement.textContent = line;
+          target.append(newElement)
+    }
+    else{
+      var line = lines[idx].join("")
+
+      const newElement = document.createElement('p');
+      newElement.textContent = line;
+      target.append(newElement)
+    }
+  
+  }
   }
   </script>
