@@ -75,20 +75,18 @@
 
   function debil() {
     target.innerHTML = ""
-    number_of_hashtags = 0;
-    var idx = 0;
+
     for (var i = 0; i < lines.length; i++) {
       if(lines[i][0] === "#"){
         number_of_hashtags++
       }
       else{
-        idx = i;
         break
       }
     }
     
     if(number_of_hashtags > 0){
-      var line_array = lines[idx];
+      var line_array = lines[i];
       line_array.splice(0, number_of_hashtags + 1);
           var line = line_array.join("")
           
@@ -100,13 +98,12 @@
           target.append(newElement)
     }
     else{
-      var line = lines[idx].join("")
+      var line = lines[i].join("")
 
       const newElement = document.createElement('p');
       newElement.textContent = line;
       target.append(newElement)
     }
   
-  }
   }
   </script>
