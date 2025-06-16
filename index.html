@@ -123,9 +123,10 @@ function reader(){
 
 
     ///check for ---
+  function line_break(Tags){
     var slash = true
     while (slash === true) {
-      if(line_array[0] === "-" && line_array[1] === "-" && line_array[2] === "-"){
+      if(line_array[0] === Tags && line_array[1] === Tags && line_array[2] === Tags){
         const newElement = document.createElement("hr");
         target.append(newElement)
         line_array.splice(0, 3)
@@ -135,6 +136,14 @@ function reader(){
         slash = false;
       }
     }
+  }
+  if(
+    line_break("-")||
+    line_break("_")||
+    line_break("=")
+  ){
+    continue;
+  }
 
 
 
