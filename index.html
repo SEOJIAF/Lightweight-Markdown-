@@ -94,22 +94,6 @@ function debil(){
       }
     }
 
-    if(number_of_hashtags > 0){
-      var line = line_array.join("")
-      var hTag = "h" + number_of_hashtags
-
-      const newElement = document.createElement(hTag);
-      newElement.textContent = line;
-      target.append(newElement)  
-    }
-    else{
-      var line = line_array.join("")
-      const newElement = document.createElement("p");
-      newElement.textContent = line;
-      target.append(newElement)
-    }  
-
-
 
 
 
@@ -129,12 +113,29 @@ function debil(){
     }
 
 
+
     
+        if(number_of_hashtags > 0){
+      var line = line_array.join("")
+      var hTag = "h" + number_of_hashtags
+
+      const newElement = document.createElement(hTag);
+      newElement.textContent = line;
+      target.append(newElement)  
+    }
+    else{
+      var line = line_array.join("")
+      const newElement = document.createElement("p");
+      newElement.textContent = line;
+      target.append(newElement)
+    }  
 
 
 
 
+    
   }
+
 
 }
   
