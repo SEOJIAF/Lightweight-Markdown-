@@ -119,7 +119,6 @@ function reader(){
   const last_letter = line_array.length - 1;
 
     // make bold text
-
   if (line_array[0] === "*" && line_array[last_letter] === "*") {
     const line = line_array.join("");
     const trimmed = line.slice(1, -1);
@@ -133,8 +132,8 @@ function reader(){
 
     line_array.splice(0, line_array.length);
   }
+    
     //italic text
-
   if (line_array[0] === "^" && line_array[last_letter] === "^") {
     const line = line_array.join("");
     const trimmed = line.slice(1, -1);
@@ -150,7 +149,6 @@ function reader(){
   }
 
     //strike-throug text
-
   if (line_array[0] === "~" && line_array[last_letter] === "~") {
     const line = line_array.join("");
     const trimmed = line.slice(1, -1);
