@@ -85,24 +85,27 @@
       }
     }
     
-    if(number_of_hashtags > 0){
-      var line_array = lines[i];
-      line_array.splice(0, number_of_hashtags + 1);
-          var line = line_array.join("")
-          
 
-          var h_something = "h" + number_of_hashtags
-          
-          const newElement = document.createElement(h_something);
-          newElement.textContent = line;
-          target.append(newElement)
-    }
-    else{
-      var line = lines[i].join("")
+    for (var i = 0; i < lines.length; i++) {
+      if(number_of_hashtags > 0){
+        var line_array = lines[i];
+        line_array.splice(0, number_of_hashtags + 1);
+            var line = line_array.join("")
+            
 
-      const newElement = document.createElement('p');
-      newElement.textContent = line;
-      target.append(newElement)
+            var h_something = "h" + number_of_hashtags
+            
+            const newElement = document.createElement(h_something);
+            newElement.textContent = line;
+            target.append(newElement)
+      }
+      else{
+        var line = lines[i].join("")
+
+        const newElement = document.createElement('p');
+        newElement.textContent = line;
+        target.append(newElement)
+      }
     }
   
   }
