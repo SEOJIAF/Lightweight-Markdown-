@@ -11,7 +11,7 @@
   <div id="container">
 
     <div id="place">
-      <textarea name="input" id="content"></textarea>
+      <textarea name="input" id="content" cols="80" rows="80"></textarea>
       <button onclick="update()">Goooo</button>
     </div>
 
@@ -80,6 +80,9 @@ function debil(){
     var number_of_hashtags = 0
     var line_array = lines[i];
 
+
+    //check for #
+
     var hashtag = true
     while (hashtag === true) {
       if(line_array[0] === "#"){
@@ -91,18 +94,48 @@ function debil(){
       }
     }
 
-    var line = line_array.join("")
+    if(number_of_hashtags > 0){
+      var line = line_array.join("")
+      var hTag = "h" + number_of_hashtags
+
+      const newElement = document.createElement(hTag);
+      newElement.textContent = line;
+      target.append(newElement)  
+    }
+    else{
+      var line = line_array.join("")
+      const newElement = document.createElement("p");
+      newElement.textContent = line;
+      target.append(newElement)
+    }  
+
+
+
+
+
+
+    ///check for ---
+    var slash = true
+    while (slash === true) {
+      if(line_array[0] === "-" && line_array[1] === "-" && line_array[2] === "-"){
+        const newElement = document.createElement("hr");
+        target.append(newElement)
+        line_array.shift()
+        break
+      }
+      else{
+        slash = false;
+      }
+    }
+
+
     
-    var hTag = "h" + number_of_hashtags
 
-    const newElement = document.createElement(hTag);
-    newElement.textContent = line;
-    target.append(newElement)
-  
-  }
 
 
 
   }
+
+}
   
   </script>
