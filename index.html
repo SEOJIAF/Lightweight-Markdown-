@@ -116,16 +116,31 @@ function debil(){
 
 
     // make bold text
-    var bo = true
+
     var last_lettter = line_array.length - 1
     console.log(last_lettter)
     if(line_array[0] === "*" && line_array[last_lettter] === "*"){
       var line = line_array.join("")
+      const trimmed = line.slice(1, -1);
       const newElement = document.createElement("b");
-      newElement.textContent = line;
+      newElement.textContent = trimmed;
       target.append(newElement)
-      line_array.splice(0)
-      line_array.splice(last_lettter)
+      line_array.splice(0, last_lettter + 1)
+    }
+
+
+
+        // make bold text
+
+    var last_lettter = line_array.length - 1
+    console.log(last_lettter)
+    if(line_array[0] === "*" && line_array[last_lettter] === "*"){
+      var line = line_array.join("")
+      const trimmed = line.slice(1, -1);
+      const newElement = document.createElement("b");
+      newElement.textContent = trimmed;
+      target.append(newElement)
+      line_array.splice(0, last_lettter + 1)
     }
 
 
@@ -153,7 +168,12 @@ function debil(){
 
     
   }
-
+  const paragraphs = target.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    if (p.textContent.trim() === '') {
+      p.remove();
+    }
+  });
 
 }
   
