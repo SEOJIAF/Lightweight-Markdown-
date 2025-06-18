@@ -68,7 +68,20 @@ n/</textarea>
   function update () {
     User_input = document.getElementById("content").value;
     console.log(User_input);
-    stringToArray(User_input);
+    const vystup = stringToArray(User_input);
+    document.getElementById("rendered").innerHTML = vystup;
+    // vystup = funkcia(vstup);
+
+
+    if (stringToArray("*Dusko*") !== "<p id=\"important\"><b>Dusko</b></p>") {
+      console.error("1 UNIT TEST ERROR", stringToArray("*Dusko*"));
+    }
+
+    if (stringToArray("---") !== "<hr>") {
+      console.error("2 UNIT TEST ERROR");
+    }
+
+
   }
 
   function stringToArray(str) {
@@ -77,12 +90,12 @@ n/</textarea>
     console.log(main_string);
 
     for (var i = 0; i < main_string.length; i++) {
-    var line = main_string[i].split("") ;
-    lines.push(line);
+      var line = main_string[i].split("") ;
+      lines.push(line);
     }
     console.log(lines);
 
-    reader();
+    return reader();
   }
 
 
@@ -100,7 +113,8 @@ n/</textarea>
 
 function reader(){
 
-  target.innerHTML = ""
+ // target.innerHTML = ""
+  var vystup = document.createElement("div");
 
   for (var i = 0; i < lines.length; i++) {
     var number_of_hashtags = 0
@@ -122,6 +136,9 @@ function reader(){
 
 
 
+    #ahoj
+    <h1>ahoj<h1/>
+
 
 
     ///check for ---
@@ -130,7 +147,8 @@ function reader(){
     while (slash === true) {
       if(line_array[0] === Tags && line_array[1] === Tags && line_array[2] === Tags){
         const newElement = document.createElement("hr");
-        target.append(newElement)
+        // target.append(newElement);
+        vystup.append(newElement);
         line_array.splice(0, 3)
         break
       }
@@ -148,7 +166,6 @@ function reader(){
   }
 
 
-
   const last_letter = line_array.length - 1;
 
   function wrapers(wrapper, tag){
@@ -162,7 +179,8 @@ function reader(){
       const paragraph = document.createElement("p");
       paragraph.id = "important";
       paragraph.appendChild(bold);
-      target.appendChild(paragraph);
+      // target.appendChild(paragraph);
+      vystup.appendChild(paragraph);
 
       line_array.splice(0, line_array.length);
       return true;
@@ -182,7 +200,8 @@ function reader(){
     const newElement = document.createElement("p");
     // newElement.textContent = "&nbsp;"
     newElement.id = "important";
-    target.append(newElement)
+    // target.append(newElement)
+    vystup.append(newElement)
     line_array.splice(0, line_array.length);
   }
 
@@ -193,29 +212,40 @@ function reader(){
 
     const newElement = document.createElement(hTag);
     newElement.textContent = line;
-    target.append(newElement)  
+    // target.append(newElement)  
+    vystup.append(newElement)  
   }
   else{
     var line = line_array.join("")
     const newElement = document.createElement("p");
     newElement.textContent = line;
-    target.append(newElement)
+    // target.append(newElement)
+    vystup.append(newElement)
   }  
 
 
 
 
     
-  }
+  } // for
   
-const paragraphs = target.querySelectorAll('p');
+  // const paragraphs = target.querySelectorAll('p');
 
-paragraphs.forEach(p => {
-  if (p.id !== "important" && p.textContent.trim() === '') {
-    p.remove();
-  }
-});
+  // paragraphs.forEach(p => {
+  //   if (p.id !== "important" && p.textContent.trim() === '') {
+  //     p.remove();
+  //   }
+  // });
 
+  const vystupx = vystup.querySelectorAll('p');
+
+  vystupx.forEach(p => {
+    if (p.id !== "important" && p.textContent.trim() === '') {
+      p.remove();
+    }
+  });
+
+  return vystup.innerHTML;
 
 }
   
