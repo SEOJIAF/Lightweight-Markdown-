@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <p>
+    <p>ahoj</p><b>ahoj</b>
+  </p>
 
 
   <div id="container">
@@ -73,7 +76,13 @@ n/</textarea>
     // vystup = funkcia(vstup);
 
 
+    if (stringToArray("*Dusko*") !== "<p id=\"important\"><b>Dusko</b></p>") {
+      console.error("1 UNIT TEST ERROR", stringToArray("*Dusko*"));
+    }
 
+    if (stringToArray("---") !== "<hr>") {
+      console.error("2 UNIT TEST ERROR");
+    }
 
 
   }
@@ -157,32 +166,87 @@ function reader(){
 
   const last_letter = line_array.length - 1;
 
-  function wrapers(wrapper, tag){
-      if (line_array[0] === wrapper && line_array[last_letter] === wrapper) {
-      const line = line_array.join("");
-      const trimmed = line.slice(1, -1);
+  // function wrapers(wrapper, tag){
+  //     if (line_array[0] === wrapper && line_array[last_letter] === wrapper) {
+  //     const line = line_array.join("");
+  //     const trimmed = line.slice(1, -1);
+
+  //     const bold = document.createElement(tag);
+  //     bold.textContent = trimmed;
+
+  //     const paragraph = document.createElement("p");
+  //     paragraph.id = "important";
+  //     paragraph.appendChild(bold);
+  //     // target.appendChild(paragraph);
+  //     vystup.appendChild(paragraph);
+
+  //     line_array.splice(0, line_array.length);
+  //     return true;
+  //   }
+  //   return false;
+  // }
+  // if(
+  //   wrapers("*","b")||
+  //   wrapers("^","i")||
+  //   wrapers("~","s")
+  // ){
+  //   continue;
+  // }
+
+  function text_effects(wrapper, tag) {
+    let First_wrap = -1;
+    let Second_wrap = -1;
+    let save_or_not = false;
+
+    for (let i = 0; i <= last_letter; i++) {
+      if (!save_or_not) {
+        if (line_array[i] === wrapper) {
+          First_wrap = i;
+          save_or_not = true;
+        }
+      } else {
+        if (line_array[i] === wrapper) {
+          Second_wrap = i;
+          break;
+        }
+      }
+    }
+
+    if (First_wrap !== -1 && Second_wrap !== -1) {
+      const before = line_array.slice(0, First_wrap).join('');
+      const bold_part = line_array.slice(First_wrap + 1, Second_wrap).join('');
+      const after = line_array.slice(Second_wrap + 1).join('');
 
       const bold = document.createElement(tag);
-      bold.textContent = trimmed;
+      bold.textContent = bold_part;
 
       const paragraph = document.createElement("p");
       paragraph.id = "important";
-      paragraph.appendChild(bold);
-      // target.appendChild(paragraph);
+
+      paragraph.textContent = before; // Set text before bold
+      paragraph.appendChild(bold);    // Add bold part
+      paragraph.appendChild(document.createTextNode(after)); // Add after
+
       vystup.appendChild(paragraph);
 
+      // Clear original line
       line_array.splice(0, line_array.length);
+
       return true;
     }
+
     return false;
   }
-  if(
-    wrapers("*","b")||
-    wrapers("^","i")||
-    wrapers("~","s")
-  ){
+  if (
+    text_effects("*", "b") ||
+    text_effects("^", "i") ||
+    text_effects("~", "s")
+  ) {
     continue;
   }
+
+
+
 
   if(line_array[0] === "n" && line_array[last_letter] === "/"){
     console.log("works")
